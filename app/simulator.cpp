@@ -7,6 +7,7 @@
 #include "person.hpp"
 #include "location.hpp"
 #include "ui.hpp"
+#include "report_status.hpp"
 
 using namespace std;
 
@@ -110,14 +111,14 @@ int sim_main()
 
         if ((i % 10) == 0 || num_infected == 0)
         {
-            printf("%i\t%i\t%i\t%i(%lf%%)\n", num_vulnerable,
-                   num_infected, num_immune, num_dead, (num_dead * 100.0 / NUM_PEOPLE));
+            report_status my_report(num_vulnerable, num_infected, num_immune, num_dead);
+            std::cout << my_report << "\n";
         }
         infection_history[i] = num_infected;
         if (num_infected == 0)
             break;
     }
-    printf("Peak infections - %i\n", max_infected_at_once);
+    std::cout << "Peak infections - " << max_infected_at_once << "\n";
     return 0;
 }
 

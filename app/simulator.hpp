@@ -6,7 +6,7 @@
 #define SIM_HOURS 5000
 #define NUM_PEOPLE 1000
 
-enum disease_status
+enum class disease_status
 {
     VULNERABLE,
     INFECTED,

@@ -7,15 +7,15 @@ Person::Person()
     PopularPlacesModel *model = new PopularPlacesModel();
     mobility_model = (MobilityModel *)model;
     mobility_model->setPerson(this);
-    status = VULNERABLE;
+    status = disease_status::VULNERABLE;
     disease_counter = INFECTION_TIME;
 }
 
 bool Person::infect()
 {
-    if (status == VULNERABLE)
+    if (status == disease_status::VULNERABLE)
     {
-        status = INFECTED;
+        status = disease_status::INFECTED;
         return true;
     }
     else
@@ -24,7 +24,7 @@ bool Person::infect()
 
 bool Person::try_infect(Person other_person)
 {
-    if (other_person.status != INFECTED)
+    if (other_person.status != disease_status::INFECTED)
         return false;
     if (location.get_distance(other_person.location) > INFECTION_PROXIMITY)
         return false;
@@ -35,7 +35,7 @@ bool Person::try_infect(Person other_person)
 
 void Person::progress_disease()
 {
-    if (status == INFECTED)
+    if (status == disease_status::INFECTED)
     {
         disease_counter--;
         if (disease_counter <= 0)
@@ -44,14 +44,14 @@ void Person::progress_disease()
             if (saturated)
                 fatality_rate = SATURED_FATALITY_RATE;
             if (try_event(fatality_rate))
-                status = DEAD;
+                status = disease_status::DEAD;
             else
-                status = IMMUNE;
+                status = disease_status::IMMUNE;
         }
     }
 }
 
 bool Person::is_alive()
 {
-    return status != DEAD;
+    return status != disease_status::DEAD;
 }

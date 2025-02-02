@@ -78,16 +78,16 @@ static void draw_person(cairo_t *cr, GtkWidget *widget, Person *p)
 
     switch (p->status)
     {
-    case DEAD:
+    case disease_status::DEAD:
         cairo_set_source_rgba(cr, 1.0, 0, 0, 1.0);
         break;
-    case VULNERABLE:
+    case disease_status::VULNERABLE:
         cairo_set_source_rgba(cr, 0, 0, 0, 0.4);
         break;
-    case IMMUNE:
+    case disease_status::IMMUNE:
         cairo_set_source_rgba(cr, 0, 0, 1.0, 0.9);
         break;
-    case INFECTED:
+    case disease_status::INFECTED:
         cairo_set_source_rgba(cr, 0, 0.7, 0, 0.9);
         break;
     }

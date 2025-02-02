@@ -1,17 +1,13 @@
-file(GLOB headers ./**.hpp)
-file(GLOB sources ./**.cpp)
+project(simulation)
 
-set(SOURCE_FILES
-    ${headers}
-    ${sources}
-)
+file(GLOB toCompile ./**.cpp)
+
+set(sources ${toCompile})
 
 add_definitions(${GTK3_CFLAGS_OTHER})
 link_directories(${GTK3_LIBRARY_DIRS})
-set(EXE_SOURCES ${SOURCE_FILES})
 
-include_directories(${GTK3_INCLUDE_DIRS})
-add_executable(${EXECUTABLE_TEST} ${EXE_SOURCES})
+add_executable(${PROJECT_NAME} ${sources})
 
-target_include_directories(${EXECUTABLE_TEST} PRIVATE ${GTK3_INCLUDE_DIRS})
-target_link_libraries(${EXECUTABLE_TEST} ${GTK3_LIBRARIES})
+target_include_directories(${PROJECT_NAME} ${GTK3_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${GTK3_LIBRARIES})

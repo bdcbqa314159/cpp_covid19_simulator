@@ -1,6 +1,5 @@
 #include "person.hpp"
 #include "ppmodel.hpp"
-// #include "rwmodel.hpp"
 
 Person::Person()
 {

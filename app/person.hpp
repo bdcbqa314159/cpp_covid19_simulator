@@ -11,7 +11,7 @@ class Person
 public:
     Person();
     bool infect();
-    bool try_infect(Person other_persone);
+    bool try_infect(Person other_person);
     void progress_disease();
     bool is_alive();
 

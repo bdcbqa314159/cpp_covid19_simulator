@@ -1,9 +1,7 @@
 #pragma once
 
-#include "mobility_model.hpp"
 #include <iostream>
-
-class Location;
+#include "mobility_model.hpp"
 
 #define NUM_POPULAR_PLACES 8
 
@@ -14,6 +12,8 @@ class Location;
 
 #define PP_TOP_SPEED 20
 #define MAX_STAY 8
+
+class Location;
 
 class PopularPlacesModel : public MobilityModel
 {

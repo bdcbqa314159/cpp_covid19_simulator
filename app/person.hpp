@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
 
+#include <iostream>
 #include "simulator.hpp"
 #include "mobility_model.hpp"
 #include "location.hpp"

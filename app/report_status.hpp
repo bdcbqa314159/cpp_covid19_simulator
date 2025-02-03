@@ -1,17 +1,26 @@
 #pragma once
 #include <iostream>
 #include "simulator.hpp"
+#include "person.hpp"
 
 class report_status
 {
 public:
-    int num_vulnerable{};
-    int num_infected{};
-    int num_immune{};
-    int num_dead{};
+    int num_vulnerable{}, num_infected{}, num_immune{}, num_dead{};
 
     report_status() = default;
-    report_status(int num_vulnerable, int num_infected, int num_immune, int num_dead) : num_vulnerable(num_vulnerable), num_infected(num_infected), num_immune(num_immune), num_dead(num_dead) {}
+
+    void operator()(Person &person)
+    {
+        if (!person.is_alive())
+            num_dead++;
+        if (person.status == disease_status::INFECTED)
+            num_infected++;
+        if (person.status == disease_status::IMMUNE)
+            num_immune++;
+        if (person.status == disease_status::VULNERABLE)
+            num_vulnerable++;
+    }
 
     friend std::ostream &operator<<(std::ostream &os, const report_status &obj)
     {

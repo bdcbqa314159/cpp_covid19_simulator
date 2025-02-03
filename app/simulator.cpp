@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cassert>
 #include <cstdlib>
+#include <array>
 
 #include "simulator.hpp"
 #include "person.hpp"
@@ -10,13 +11,11 @@
 #include "report_status.hpp"
 #include "random_generator.hpp"
 
-using namespace std;
-
 bool saturated = false;
 bool try_event(double probability)
 {
     assert(probability >= 0.0 && probability <= 1.0);
-    const int resolution = 100000; // probably doesn't matter what this is, as long as it's big
+    const int resolution = 100000;
 
     random_uniform my_gen;
     double rnum = my_gen(resolution);
@@ -41,6 +40,7 @@ int sim_main()
     {
         people[i].status = disease_status::INFECTED;
     }
+
     int max_infected_at_once = 0;
 
     for (int i = 0; i < SIM_HOURS; i++)
@@ -77,43 +77,26 @@ int sim_main()
         }
 
         // report status
-        int num_infected = 0;
-        int num_immune = 0;
-        int num_dead = 0;
-        int num_vulnerable = 0;
+        report_status my_report;
         for (int p = 0; p < NUM_PEOPLE; p++)
         {
-            if (!people[p].is_alive())
+            my_report(people[p]);
+            if (my_report.num_infected > max_infected_at_once)
             {
-                num_dead++;
-            }
-            if (people[p].status == disease_status::INFECTED)
-            {
-                num_infected++;
-            }
-            if (people[p].status == disease_status::IMMUNE)
-            {
-                num_immune++;
-            }
-            if (people[p].status == disease_status::VULNERABLE)
-            {
-                num_vulnerable++;
+                max_infected_at_once = my_report.num_infected;
             }
         }
-        if (num_infected > max_infected_at_once)
-        {
-            max_infected_at_once = num_infected;
-        }
 
-        saturated = (num_infected > SATURATION_THRESHOLD);
+        saturated = (my_report.num_infected > SATURATION_THRESHOLD);
 
-        if ((i % 10) == 0 || num_infected == 0)
+        if ((i % 10) == 0 || my_report.num_infected == 0)
         {
-            report_status my_report(num_vulnerable, num_infected, num_immune, num_dead);
             std::cout << my_report << "\n";
         }
-        infection_history[i] = num_infected;
-        if (num_infected == 0)
+
+        infection_history[i] = my_report.num_infected;
+
+        if (my_report.num_infected == 0)
             break;
     }
     std::cout << "Peak infections - " << max_infected_at_once << "\n";
@@ -123,7 +106,5 @@ int sim_main()
 int main()
 {
     return start_ui(sim_main);
-    // Person myPerson;
-    // std::cout << "testing here\n";
     return 0;
 }

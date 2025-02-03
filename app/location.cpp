@@ -14,9 +14,9 @@ bool Location::move_toward(Location &destination, double howfar)
 {
     double dx = destination.x - x;
     double dy = destination.y - y;
-    double theta = atan2(dy, dx);
+    double theta = std::atan2(dy, dx);
 
-    double distance = sqrt((dx * dx) + (dy * dy));
+    double distance = std::sqrt((dx * dx) + (dy * dy));
 
     if (distance < howfar)
     {
@@ -26,8 +26,8 @@ bool Location::move_toward(Location &destination, double howfar)
     }
     else
     {
-        x = x + (howfar * cos(theta));
-        y = y + (howfar * sin(theta));
+        x = x + (howfar * std::cos(theta));
+        y = y + (howfar * std::sin(theta));
         return false;
     }
 }
@@ -36,7 +36,7 @@ double Location::get_distance(Location &other_location)
 {
     double dx = other_location.x - x;
     double dy = other_location.y - y;
-    return sqrt((dx * dx) + (dy * dy));
+    return std::sqrt((dx * dx) + (dy * dy));
 }
 
 bool Location::at_location(Location &destination)

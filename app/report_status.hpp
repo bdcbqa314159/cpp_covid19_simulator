@@ -15,7 +15,6 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const report_status &obj)
     {
-        os.precision(6);
         double percent_dead = obj.num_dead * 100. / NUM_PEOPLE;
         os << obj.num_vulnerable << "\t" << obj.num_infected << "\t" << obj.num_immune << "\t" << obj.num_dead << "(" << percent_dead << "%)";
         return os;

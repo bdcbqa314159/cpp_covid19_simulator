@@ -13,7 +13,7 @@ using namespace std;
 
 bool saturated = false;
 
-u_int32_t arc4random_uniform(u_int32_t upper_bound);
+// u_int32_t arc4random_uniform(u_int32_t upper_bound);
 
 bool try_event(double probability)
 {

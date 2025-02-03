@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 #include "simulator.hpp"
 #include "mobility_model.hpp"
@@ -16,7 +17,7 @@ public:
     bool is_alive();
 
     Location location;
-    MobilityModel *mobility_model = nullptr;
+    std::unique_ptr<MobilityModel> mobility_model;
     disease_status status = disease_status::VULNERABLE;
     int disease_counter = INFECTION_TIME;
 };

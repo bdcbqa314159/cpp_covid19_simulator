@@ -37,7 +37,6 @@ int sim_main()
 
     // zero out the history
     memset(infection_history, 0, sizeof(infection_history));
-
     // initial infections
     for (int i = 0; i < INITIAL_INFECTIONS; i++)
     {

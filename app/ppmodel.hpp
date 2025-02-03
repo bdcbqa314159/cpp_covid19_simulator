@@ -14,7 +14,7 @@ class Location;
 #define PP_TOP_SPEED 20
 #define MAX_STAY 8
 
-class PopularPlacesModel : MobilityModel
+class PopularPlacesModel : public MobilityModel
 {
 
 private:
@@ -26,5 +26,5 @@ private:
 public:
     PopularPlacesModel();
     void pick_new_waypoint();
-    void move();
+    virtual void move() override;
 };

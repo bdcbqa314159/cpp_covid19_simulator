@@ -4,9 +4,7 @@
 
 Person::Person()
 {
-    PopularPlacesModel *model = new PopularPlacesModel();
-    mobility_model = (MobilityModel *)model;
-    // std::unique_ptr<MobilityModel> model = std::make_unique<PopularPlacesModel>();
+    mobility_model = std::make_unique<PopularPlacesModel>();
     mobility_model->setPerson(this);
 }
 

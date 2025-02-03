@@ -2,6 +2,7 @@
 #include "ppmodel.hpp"
 #include "location.hpp"
 #include "simulator.hpp"
+#include "random_generator.hpp"
 #include <cmath>
 
 static Location popularPlaces[NUM_POPULAR_PLACES];
@@ -9,17 +10,11 @@ static Location popularPlaces[NUM_POPULAR_PLACES];
 PopularPlacesModel::PopularPlacesModel() : MobilityModel()
 {
     speed = -1;
-    home = new Location();
+    home = std::make_unique<Location>();
     if (try_event(DISTANCING_PROBABILITY))
-    {
-        // I'm distancing
-        home_probability = DISTANCING_HOME_PROBABILITY;
-    }
+        home_probability = DISTANCING_HOME_PROBABILITY; // I'm distancing
     else
-    {
-        // I'm a COVIDiot
-        home_probability = NOT_DISTANCING_HOME_PROBABILITY;
-    }
+        home_probability = NOT_DISTANCING_HOME_PROBABILITY; // I'm a COVIDiot
 }
 
 // why do I compare 'distance' with 'speed'? I have passed a 'speed' variable as a second argument to move_toward() in simulator.cpp.
@@ -35,28 +30,24 @@ void PopularPlacesModel::move()
     {
         stay--;
         if (stay <= 0)
-        {
             pick_new_waypoint();
-        }
     }
     else
-    {
-        person->location.move_toward(*waypoint, speed); // 17:10
-    }
+        person->location.move_toward(*waypoint, speed);
 }
 
 void PopularPlacesModel::pick_new_waypoint()
 {
-    speed = arc4random_uniform(PP_TOP_SPEED + 1);
-    stay = arc4random_uniform(MAX_STAY);
+    random_uniform_int my_gen;
+    speed = my_gen(PP_TOP_SPEED + 1);
+    stay = my_gen(MAX_STAY);
+
     if (try_event(home_probability))
-    {
-        waypoint = home;
-    }
+        waypoint = home.get();
     else
     {
         // pick a random popular place and go there
-        int place = arc4random_uniform(NUM_POPULAR_PLACES);
+        int place = my_gen(NUM_POPULAR_PLACES);
         waypoint = &(popularPlaces[place]);
     }
 }

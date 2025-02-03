@@ -106,5 +106,7 @@ int sim_main()
 int main()
 {
     return start_ui(sim_main);
+    // Location popularPlaces[2];
+    // std::cout << "testing...\n";
     return 0;
 }

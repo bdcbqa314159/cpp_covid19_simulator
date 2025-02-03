@@ -1,10 +1,11 @@
 #pragma once
 
 #include "mobility_model.hpp"
+#include <iostream>
 
 class Location;
 
-#define NUM_POPULAR_PLACES 4
+#define NUM_POPULAR_PLACES 8
 
 #define DISTANCING_PROBABILITY 0.2
 
@@ -18,10 +19,11 @@ class PopularPlacesModel : public MobilityModel
 {
 
 private:
-    Location *waypoint;
-    Location *home;
-    int speed, stay;
-    double home_probability;
+    Location *waypoint = nullptr;
+    std::unique_ptr<Location> home;
+
+    int speed{}, stay{};
+    double home_probability{};
 
 public:
     PopularPlacesModel();

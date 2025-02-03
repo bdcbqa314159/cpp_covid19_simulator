@@ -28,8 +28,8 @@ bool Location::move_toward(Location &destination, double howfar)
     }
     else
     {
-        x = x + (howfar * std::cos(theta));
-        y = y + (howfar * std::sin(theta));
+        x += (howfar * std::cos(theta));
+        y += (howfar * std::sin(theta));
         return false;
     }
 }
@@ -46,7 +46,7 @@ bool Location::at_location(Location &destination)
     return (get_distance(destination) < CLOSE_ENOUGH);
 }
 
-double Location::get_x() { return x; }
-double Location::get_y() { return y; }
+double Location::get_x() const { return x; }
+double Location::get_y() const { return y; }
 void Location::set_x(double nx) { x = nx; }
 void Location::set_y(double ny) { y = ny; }

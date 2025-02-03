@@ -38,7 +38,8 @@ static gboolean configure_event_callback(GtkWidget *widget,
     return TRUE;
 }
 
-/* Redraw the screen from the surface. Note that the ::draw
+/*
+ * Redraw the screen from the surface. Note that the ::draw
  * signal receives a ready-to-be-used cairo_t
  * that is already clipped to only draw the exposed areas of the widget
  */
@@ -91,7 +92,6 @@ static void draw_person(cairo_t *cr, GtkWidget *widget, Person *p)
         cairo_set_source_rgba(cr, 0, 0.7, 0, 0.9);
         break;
     }
-    // cairo_arc(cr, x, y, 4, 0, 2 * M_PI);
     cairo_rectangle(cr, x - 3, y - 3, 6, 6);
     cairo_fill(cr);
 }

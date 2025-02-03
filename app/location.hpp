@@ -9,8 +9,8 @@ public:
     Location();
     Location(double nx, double ny) : x(nx), y(ny) {}
 
-    double get_x();
-    double get_y();
+    double get_x() const;
+    double get_y() const;
     void set_x(double nx);
     void set_y(double ny);
 

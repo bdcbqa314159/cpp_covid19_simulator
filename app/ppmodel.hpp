@@ -20,7 +20,7 @@ class PopularPlacesModel : public MobilityModel
 
 private:
     Location *waypoint = nullptr;
-    std::unique_ptr<Location> home;
+    Location home;
 
     int speed{}, stay{};
     double home_probability{};

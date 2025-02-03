@@ -31,10 +31,10 @@ int sim_main()
     // "flattening the curve"
     // this hitory array is the curve for stores the number
     // of current infections at each hour in the simulation
-    int infection_history[SIM_HOURS];
-
     // zero out the history
-    memset(infection_history, 0, sizeof(infection_history));
+
+    int infection_history[SIM_HOURS] = {0};
+
     // initial infections
     for (int i = 0; i < INITIAL_INFECTIONS; i++)
     {
@@ -106,7 +106,5 @@ int sim_main()
 int main()
 {
     return start_ui(sim_main);
-    // Location popularPlaces[2];
-    // std::cout << "testing...\n";
     return 0;
 }

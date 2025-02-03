@@ -10,7 +10,6 @@ static Location popularPlaces[NUM_POPULAR_PLACES];
 PopularPlacesModel::PopularPlacesModel() : MobilityModel()
 {
     speed = -1;
-    home = std::make_unique<Location>();
     if (try_event(DISTANCING_PROBABILITY))
         home_probability = DISTANCING_HOME_PROBABILITY; // I'm distancing
     else
@@ -22,10 +21,11 @@ void PopularPlacesModel::move()
 {
     if (speed < 0)
     {
-        person->location.set_x(home->get_x());
-        person->location.set_y(home->get_y());
+        person->location.set_x(home.get_x());
+        person->location.set_y(home.get_y());
         pick_new_waypoint();
     }
+
     else if (person->location.at_location(*waypoint))
     {
         stay--;
@@ -43,7 +43,7 @@ void PopularPlacesModel::pick_new_waypoint()
     stay = my_gen(MAX_STAY);
 
     if (try_event(home_probability))
-        waypoint = home.get();
+        waypoint = &home;
     else
     {
         // pick a random popular place and go there

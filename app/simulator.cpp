@@ -8,20 +8,19 @@
 #include "location.hpp"
 #include "ui.hpp"
 #include "report_status.hpp"
+#include "random_generator.hpp"
 
 using namespace std;
 
 bool saturated = false;
-
-// u_int32_t arc4random_uniform(u_int32_t upper_bound);
-
 bool try_event(double probability)
 {
     assert(probability >= 0.0 && probability <= 1.0);
     const int resolution = 100000; // probably doesn't matter what this is, as long as it's big
 
-    double rnum = arc4random_uniform(resolution);
-    rnum = rnum / (double)resolution;
+    random_uniform my_gen;
+    double rnum = my_gen(resolution);
+    rnum /= resolution;
     return rnum <= probability;
 }
 

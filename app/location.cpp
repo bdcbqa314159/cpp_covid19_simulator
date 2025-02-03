@@ -1,13 +1,15 @@
 #include "location.hpp"
 #include <cmath>
 #include "simulator.hpp"
+#include "random_generator.hpp"
 
 #define CLOSE_ENOUGH 0.05
 
 Location::Location()
 {
-    x = arc4random_uniform(X_LIMIT);
-    y = arc4random_uniform(Y_LIMIT);
+    random_uniform my_gen;
+    x = my_gen(X_LIMIT);
+    y = my_gen(Y_LIMIT);
 }
 
 bool Location::move_toward(Location &destination, double howfar)

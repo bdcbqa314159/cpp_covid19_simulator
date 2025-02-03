@@ -14,7 +14,7 @@ public:
     void set_x(double nx);
     void set_y(double ny);
 
-    double get_distance(Location other_location);
-    bool move_toward(Location destination, double speed);
-    bool at_location(Location destination);
+    double get_distance(Location &other_location);
+    bool move_toward(Location &destination, double speed);
+    bool at_location(Location &destination);
 };

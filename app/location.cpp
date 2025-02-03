@@ -10,7 +10,7 @@ Location::Location()
     y = arc4random_uniform(Y_LIMIT);
 }
 
-bool Location::move_toward(Location destination, double howfar)
+bool Location::move_toward(Location &destination, double howfar)
 {
     double dx = destination.x - x;
     double dy = destination.y - y;
@@ -32,14 +32,14 @@ bool Location::move_toward(Location destination, double howfar)
     }
 }
 
-double Location::get_distance(Location other_location)
+double Location::get_distance(Location &other_location)
 {
     double dx = other_location.x - x;
     double dy = other_location.y - y;
     return sqrt((dx * dx) + (dy * dy));
 }
 
-bool Location::at_location(Location destination)
+bool Location::at_location(Location &destination)
 {
     return (get_distance(destination) < CLOSE_ENOUGH);
 }

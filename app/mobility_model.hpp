@@ -9,6 +9,7 @@ protected:
 
 public:
     MobilityModel() = default;
-    void setPerson(Person *p);
+    MobilityModel(Person *newPerson) : person(newPerson) {}
+    void setPerson(Person *newPerson);
     virtual void move() = 0;
 };

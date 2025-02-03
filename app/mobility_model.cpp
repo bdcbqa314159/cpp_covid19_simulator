@@ -1,14 +1,8 @@
-#include <cassert>
 #include "mobility_model.hpp"
 #include "person.hpp"
 
-// MobilityModel::MobilityModel()
-// {
-//     person = NULL;
-// }
-
-void MobilityModel::setPerson(Person *p)
+void MobilityModel::setPerson(Person *newPerson)
 {
-    assert(p != NULL);
-    person = p;
+    if (newPerson != nullptr)
+        person = newPerson;
 }

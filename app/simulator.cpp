@@ -125,5 +125,7 @@ int sim_main()
 int main()
 {
     return start_ui(sim_main);
+    // Person myPerson;
+    // std::cout << "testing here\n";
     return 0;
 }

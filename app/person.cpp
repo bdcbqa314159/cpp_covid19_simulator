@@ -1,3 +1,4 @@
+#include <iostream>
 #include "person.hpp"
 #include "ppmodel.hpp"
 
@@ -5,9 +6,8 @@ Person::Person()
 {
     PopularPlacesModel *model = new PopularPlacesModel();
     mobility_model = (MobilityModel *)model;
+    // std::unique_ptr<MobilityModel> model = std::make_unique<PopularPlacesModel>();
     mobility_model->setPerson(this);
-    status = disease_status::VULNERABLE;
-    disease_counter = INFECTION_TIME;
 }
 
 bool Person::infect()
@@ -21,7 +21,7 @@ bool Person::infect()
         return false;
 }
 
-bool Person::try_infect(Person other_person)
+bool Person::try_infect(Person &other_person)
 {
     if (other_person.status != disease_status::INFECTED)
         return false;

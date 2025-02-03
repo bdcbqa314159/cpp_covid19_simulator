@@ -5,10 +5,10 @@ class Person;
 class MobilityModel
 {
 protected:
-    Person *person;
+    Person *person = nullptr;
 
 public:
-    MobilityModel();
+    MobilityModel() = default;
     void setPerson(Person *p);
     virtual void move() = 0;
 };

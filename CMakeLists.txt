@@ -9,6 +9,14 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 
+set(custom_sfml_2_6_2 /usr/local/Cellar/sfml@2/2.6.2)
+set(custom_sfml_2_6_2_include ${custom_sfml_2_6_2}/include)
+set(custom_sfml_2_6_2_lib ${custom_sfml_2_6_2}/lib)
+
+find_package(SFML 2.6.2 REQUIRED
+            HINTS ${custom_sfml_2_6_2}/lib/cmake
+            COMPONENTS system window graphics network audio)
+
 set(EXECUTABLE_TEST first_exec)
 
 add_subdirectory(app)

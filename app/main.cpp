@@ -8,7 +8,6 @@
 #include "simulator.hpp"
 #include "person.hpp"
 #include "location.hpp"
-// #include "ui.hpp"
 #include "report_status.hpp"
 #include "random_generator.hpp"
 
@@ -141,7 +140,7 @@ int main()
         to_draw[i].update();
     }
 
-    sf::RenderWindow window(sf::VideoMode(WINDOW_X * 2, WINDOW_Y), "covid simulation");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_X * 2, WINDOW_Y), "covid19 simulation");
     window.setFramerateLimit(60);
 
     bool in = true;
@@ -163,7 +162,6 @@ int main()
 
         if (in && i < SIM_HOURS)
         {
-
             for (int p = 0; p < NUM_PEOPLE; p++)
             {
                 if (people[p].is_alive())
@@ -254,50 +252,8 @@ int main()
             {
                 hist_to_draw[j].render(window);
             }
-            // std::cout << my_report << "\n";
         }
         window.display();
-
-        // infection_history[i] = my_report.num_infected;
-
-        // if (my_report.num_infected == 0)
-        //     break;
-
-        // for (int p = 0; p < NUM_PEOPLE; p++)
-        // {
-        //     if (people[p].is_alive())
-        //     {
-        //         people[p].mobility_model->move();
-        //         people[p].progress_disease();
-        //     }
-        // }
-
-        // // try to infect
-        // for (int p = 0; p < NUM_PEOPLE; p++)
-        // {
-        //     if (people[p].is_alive())
-        //     {
-        //         for (int p2 = 0; p2 < NUM_PEOPLE; p2++)
-        //         {
-        //             if (p != p2 && people[p2].is_alive())
-        //             {
-        //                 people[p].try_infect(people[p2]);
-        //             }
-        //         }
-        //     }
-        // }
-
-        // for (int i = 0; i < NUM_PEOPLE; ++i)
-        // {
-        //     to_draw[i].update();
-        // }
-
-        // for (int i = 0; i < NUM_PEOPLE; ++i)
-        // {
-        //     to_draw[i].render(window);
-        // }
-
-        // window.display();
     }
 
     std::cout << "Peak infections - " << max_infected_at_once << "\n";

@@ -9,6 +9,5 @@ link_directories(${GTK3_LIBRARY_DIRS})
 
 add_executable(${PROJECT_NAME} ${sources})
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${GTK3_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${GTK3_LIBRARIES})
-target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-network sfml-audio)
+target_include_directories(${PROJECT_NAME} PUBLIC ${GTK3_INCLUDE_DIRS} ${custom_sfml_2_6_2_include})
+target_link_libraries(${PROJECT_NAME} ${GTK3_LIBRARIES} sfml-system sfml-window sfml-graphics sfml-network sfml-audio)

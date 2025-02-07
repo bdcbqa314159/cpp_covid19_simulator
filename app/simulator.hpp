@@ -8,7 +8,7 @@
 
 #define INFECTION_TIME 480
 
-#define INFECTION_PROBABILITY 0.1
+#define INFECTION_PROBABILITY 0.4
 
 #define NORMAL_FATALITY_RATE 0.1
 #define SATURED_FATALITY_RATE 0.06
@@ -16,6 +16,9 @@
 #define INITIAL_INFECTIONS 30
 
 #define SATURATION_THRESHOLD (NUM_PEOPLE / 5)
+
+#define WINDOW_X 500
+#define WINDOW_Y 500
 
 enum class disease_status
 {

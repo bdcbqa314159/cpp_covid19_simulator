@@ -118,7 +118,6 @@ bool try_event(double probability)
 
 int main()
 {
-
     Person people[NUM_PEOPLE];
     Person_sfml to_draw[NUM_PEOPLE];
 

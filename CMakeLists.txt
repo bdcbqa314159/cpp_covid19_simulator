@@ -17,4 +17,4 @@ find_package(SFML 2.6.2 REQUIRED
             HINTS ${custom_sfml_2_6_2}/lib/cmake
             COMPONENTS system window graphics network audio)
 
-add_subdirectory(app)
+add_subdirectory(simulation)

@@ -1,9 +1,9 @@
+#include <cmath>
 #include "person.hpp"
 #include "ppmodel.hpp"
 #include "location.hpp"
 #include "simulator.hpp"
 #include "random_generator.hpp"
-#include <cmath>
 
 static Location popularPlaces[NUM_POPULAR_PLACES];
 

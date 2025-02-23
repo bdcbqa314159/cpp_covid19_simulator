@@ -1,9 +1,9 @@
-#include "location.hpp"
 #include <cmath>
+#include "location.hpp"
 #include "simulator.hpp"
 #include "random_generator.hpp"
 
-#define CLOSE_ENOUGH 0.05
+constexpr double CLOSE_ENOUGH = 0.05;
 
 Location::Location()
 {

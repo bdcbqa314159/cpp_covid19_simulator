@@ -3,15 +3,13 @@
 #include <iostream>
 #include "mobility_model.hpp"
 
-#define NUM_POPULAR_PLACES 8
+constexpr size_t NUM_POPULAR_PLACES = 8;
+constexpr size_t PP_TOP_SPEED = 20;
+constexpr size_t MAX_STAY = 8;
 
-#define DISTANCING_PROBABILITY 0.2
-
-#define DISTANCING_HOME_PROBABILITY 0.997
-#define NOT_DISTANCING_HOME_PROBABILITY 0.5
-
-#define PP_TOP_SPEED 20
-#define MAX_STAY 8
+constexpr double DISTANCING_PROBABILITY = 0.2;
+constexpr double DISTANCING_HOME_PROBABILITY = 0.997;
+constexpr double NOT_DISTANCING_HOME_PROBABILITY = 0.5;
 
 class Location;
 
